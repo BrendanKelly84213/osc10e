@@ -43,13 +43,22 @@ void delete(struct node **head, Task *task) {
     }
 }
 
-// traverse the list
-void traverse(struct node *head) {
+static void print_actor(Task* t) {
+    printf("[%s] [%d] [%d]\n",t->name, t->priority, t->burst);
+}
+
+void traverse_cb(struct node *head, actor cb) {
     struct node *temp;
     temp = head;
 
     while (temp != NULL) {
-        printf("[%s] [%d] [%d]\n",temp->task->name, temp->task->priority, temp->task->burst);
+        cb(temp->task);
         temp = temp->next;
     }
 }
+
+// traverse the list
+void traverse(struct node *head) {
+    traverse_cb(head, print_actor);
+}
+

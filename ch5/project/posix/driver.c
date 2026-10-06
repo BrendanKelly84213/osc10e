@@ -42,8 +42,12 @@ int main(int argc, char *argv[])
 
     fclose(in);
 
+    fifo_traverse();
+
     // invoke the scheduler
     schedule();
+
+    fifo_traverse();
 
     return 0;
 }
